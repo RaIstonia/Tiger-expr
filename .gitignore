@@ -31,3 +31,8 @@ __pycache__/
 .env/
 .venv/
 *.egg-info/
+
+# 忽略 optimizer.pt
+optimizer.pt
+*.pt
+*.ckpt
