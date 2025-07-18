@@ -1,0 +1,14 @@
+{"time":"2025-07-15T16:49:36.083410381+08:00","level":"INFO","msg":"stream: starting","core version":"0.21.0"}
+{"time":"2025-07-15T16:49:37.097606697+08:00","level":"INFO","msg":"stream: created new stream","id":"0hrk0inm"}
+{"time":"2025-07-15T16:49:37.097648552+08:00","level":"INFO","msg":"stream: started","id":"0hrk0inm"}
+{"time":"2025-07-15T16:49:37.097744587+08:00","level":"INFO","msg":"writer: Do: started","stream_id":"0hrk0inm"}
+{"time":"2025-07-15T16:49:37.097799794+08:00","level":"INFO","msg":"handler: started","stream_id":"0hrk0inm"}
+{"time":"2025-07-15T16:49:37.097875534+08:00","level":"INFO","msg":"sender: started","stream_id":"0hrk0inm"}
+{"time":"2025-07-15T17:35:24.701951056+08:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/554634833-tsinghua-university/huggingface/0hrk0inm/file_stream\": EOF"}
+{"time":"2025-07-15T17:36:55.017214967+08:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/554634833-tsinghua-university/huggingface/0hrk0inm/file_stream\": EOF"}
+{"time":"2025-07-15T18:50:48.207732123+08:00","level":"INFO","msg":"stream: closing","id":"0hrk0inm"}
+{"time":"2025-07-15T18:50:50.636650749+08:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-07-15T18:50:52.356303873+08:00","level":"INFO","msg":"handler: closed","stream_id":"0hrk0inm"}
+{"time":"2025-07-15T18:50:52.356388731+08:00","level":"INFO","msg":"writer: Close: closed","stream_id":"0hrk0inm"}
+{"time":"2025-07-15T18:50:52.356430793+08:00","level":"INFO","msg":"sender: closed","stream_id":"0hrk0inm"}
+{"time":"2025-07-15T18:50:52.356526898+08:00","level":"INFO","msg":"stream: closed","id":"0hrk0inm"}

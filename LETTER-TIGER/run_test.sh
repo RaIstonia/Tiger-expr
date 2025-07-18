@@ -4,8 +4,9 @@ OUTPUT_DIR=./ckpt/$DATASET/
 RESULTS_FILE=./results/$DATASET/xxx.json
 CKPT_PATH=./ckpt/$DATASET/
 
+
 python test.py \
-    --gpu_id 2 \
+    --gpu_id 0 \
     --ckpt_path $CKPT_PATH \
     --dataset $DATASET \
     --data_path $DATA_PATH \

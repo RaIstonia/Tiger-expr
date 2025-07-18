@@ -81,11 +81,12 @@ def set_device(gpu_id):
 
 def load_plm(model_path='bert-base-uncased'):
 
-    tokenizer = AutoTokenizer.from_pretrained(model_path,)
+    tokenizer = AutoTokenizer.from_pretrained(model_path, local_files_only=True)
 
     print("Load Model:", model_path)
 
-    model = AutoModel.from_pretrained(model_path,low_cpu_mem_usage=True,)
+    model = AutoModel.from_pretrained(model_path,low_cpu_mem_usage=True,
+                                      local_files_only=True)
     return tokenizer, model
 
 def load_json(file):

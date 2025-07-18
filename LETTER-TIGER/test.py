@@ -76,16 +76,25 @@ def test(args):
 
             
             test_loader.dataset.set_prompt(prompt_id)
-            metrics_results = {}
+            # metrics_results = {}
+            lengths = ['1-10', '11-20', '21+']
+            
+            metrics_results = {length_bin: {metric: 0 for metric in metrics} for length_bin in lengths}
+            
             total = 0
 
             for step, batch in enumerate(tqdm(test_loader)):
                 inputs = batch[0].to(device)
                 targets = batch[1]
+                # print(inputs)
+                # print(targets)
+                print(batch)
+                os.quit(0)
+                # interaction_lengths = batch[2]  # Assume batch includes interaction lengths
                 total += len(targets)
-                if step == 0:
-                    print(inputs)
-                    print(targets)
+                # if step == 0:
+                #     print(inputs)
+                #     print(targets)
 
                 output = model.generate(
                     input_ids=inputs["input_ids"],
@@ -104,7 +113,7 @@ def test(args):
 
                 output = tokenizer.batch_decode(
                     output_ids, skip_special_tokens=True
-                )
+                ) # 将输出的
 
                 topk_res = get_topk_results(output,scores,targets,args.num_beams,
                                             all_items=all_items if args.filter_items else None)
@@ -112,17 +121,29 @@ def test(args):
                 batch_metrics_res = get_metrics_results(topk_res, metrics)
                 # print(batch_metrics_res)
 
-                for m, res in batch_metrics_res.items():
-                    if m not in metrics_results:
-                        metrics_results[m] = res
-                    else:
-                        metrics_results[m] += res
 
-                # if (step+1)%10 == 0:
-                temp={}
-                for m in metrics_results:
-                    temp[m] = metrics_results[m] / total
-                print(temp)
+                for i, length in enumerate(interaction_lengths):
+                    length_bin = get_length_bin(length)  # e.g., '1-5', '6-10', etc.
+                    batch_metrics = get_metrics_results([topk_res[i]], metrics)
+                    for m, res in batch_metrics.items():
+                        metrics_results[length_bin][m] += res
+
+                # Print intermediate results
+                if (step + 1) % 10 == 0:
+                    temp = {bin: {m: v / total for m, v in res.items()} for bin, res in metrics_results.items()}
+                    print(temp)
+
+                # for m, res in batch_metrics_res.items():
+                #     if m not in metrics_results:
+                #         metrics_results[m] = res
+                #     else:
+                #         metrics_results[m] += res
+
+                # # if (step+1)%10 == 0:
+                # temp={}
+                # for m in metrics_results:
+                #     temp[m] = metrics_results[m] / total
+                # print(temp)
 
             for m in metrics_results:
                 metrics_results[m] = metrics_results[m] / total
@@ -155,10 +176,21 @@ def test(args):
     save_data["min_results"] = min_results
     save_data["max_results"] = max_results
     save_data["all_prompt_results"] = all_prompt_results
+    save_data["metrics_by_interaction_length"] = {
+        bin: {m: v / total for m, v in res.items()} for bin, res in metrics_results.items()
+    }
 
     with open(args.results_file, "w") as f:
         json.dump(save_data, f, indent=4)
 
+
+def get_length_bin(length):
+    if length <= 10:
+        return '1-10'
+    elif length <= 20:
+        return '11-20'
+    else:
+        return '21+'
 
 
 if __name__ == "__main__":

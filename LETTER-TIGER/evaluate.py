@@ -56,10 +56,17 @@ def get_metrics_results(topk_results, metrics):
         elif m.lower().startswith("ndcg"):
             k = int(m.split("@")[1])
             res[m] = ndcg_k(topk_results, k)
+        # elif m.lower().startwith("recall"):
+        #     k = int(m.split("@")[1])
+        #     res[m] = recall_k(topk_results, k)
         else:
             raise NotImplementedError
 
     return res
+
+
+# def recall_k(topk_results, k):
+#     hit = 0.0
 
 
 def ndcg_k(topk_results, k):

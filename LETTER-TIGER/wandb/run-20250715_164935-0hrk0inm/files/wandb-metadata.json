@@ -1,0 +1,56 @@
+{
+  "os":  "Linux-6.14.0-23-generic-x86_64-with-glibc2.41",
+  "python":  "CPython 3.10.18",
+  "startedAt":  "2025-07-15T08:49:35.863919Z",
+  "args":  [
+    "--output_dir",
+    "./ckpt/Instruments/",
+    "--dataset",
+    "Instruments",
+    "--per_device_batch_size",
+    "256",
+    "--learning_rate",
+    "5e-4",
+    "--epochs",
+    "200",
+    "--index_file",
+    ".index.json",
+    "--temperature",
+    "1.0"
+  ],
+  "program":  "/home/ralstonia/replicate/LETTER/LETTER-TIGER/./finetune.py",
+  "codePath":  "LETTER-TIGER/finetune.py",
+  "codePathLocal":  "finetune.py",
+  "git":  {
+    "remote":  "https://github.com/HonghuiBao2000/LETTER.git",
+    "commit":  "8d0154e28de37dbb6e24871c508ad8ddb1921cda"
+  },
+  "email":  "554634833@qq.com",
+  "root":  "/home/ralstonia/replicate/LETTER/LETTER-TIGER",
+  "host":  "ralstonia-worktop",
+  "executable":  "/home/ralstonia/miniconda3/envs/letter/bin/python3.10",
+  "cpu_count":  20,
+  "cpu_count_logical":  28,
+  "gpu":  "NVIDIA GeForce RTX 4070 Laptop GPU",
+  "gpu_count":  1,
+  "disk":  {
+    "/":  {
+      "total":  "1002270621696",
+      "used":  "268723593216"
+    }
+  },
+  "memory":  {
+    "total":  "32804831232"
+  },
+  "gpu_nvidia":  [
+    {
+      "name":  "NVIDIA GeForce RTX 4070 Laptop GPU",
+      "memoryTotal":  "8585740288",
+      "cudaCores":  4608,
+      "architecture":  "Ada",
+      "uuid":  "GPU-116d626a-c893-7a56-e50e-06ffa51f05b3"
+    }
+  ],
+  "cudaVersion":  "12.9",
+  "writerId":  "s8mf79d2m080jf6ie9vjvkct00ww1l2p"
+}

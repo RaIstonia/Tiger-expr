@@ -61,9 +61,12 @@ ckpt_path = args_setting.root_path + f'alpha{args_setting.alpha}-beta{args_setti
 output_dir = f"./data/{dataset}/"
 output_file = f"{dataset}.index.epoch{args_setting.epoch}.alpha{args_setting.alpha}-beta{args_setting.beta}.json"
 output_file = os.path.join(output_dir,output_file)
+
+self_ckpt_path = args_setting.checkpoint
+
 device = torch.device("cuda:0")
 
-ckpt = torch.load(ckpt_path, map_location=torch.device('cpu'))
+ckpt = torch.load(self_ckpt_path, map_location=torch.device('cpu'), weights_only=False)
 args = ckpt["args"]
 state_dict = ckpt["state_dict"]
 

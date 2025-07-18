@@ -137,9 +137,11 @@ class SeqRecDataset(BaseDataset):
 
         with open(os.path.join(self.data_path, self.dataset + ".inter.json"), 'r') as f:
             self.inters = json.load(f)
+        
         with open(os.path.join(self.data_path, self.dataset + self.index_file), 'r') as f:
-            self.indices = json.load(f)
+            self.indices = json.load(f)  # 这里将相应的index.json文件加载进来 并且按照给出的数据集名称 + index.json的格式
 
+# 实现原来的Semantic ID到token的映射
     def _remap_items(self):
 
         self.remapped_inters = dict()
@@ -192,11 +194,12 @@ class SeqRecDataset(BaseDataset):
             # if uid not in cold_user:
             items = self.remapped_inters[uid]
             one_data = dict()
-            # one_data["user"] = uid
+            one_data["user"] = uid
             one_data["item"] = items[-1]
             history = items[:-1]
+            one_data["interaction_length"] = len(history) # 
             if self.max_his_len > 0:
-                history = history[-self.max_his_len:]
+                history = history[-self.max_his_len:] # 这里限制了历史长度 但是在初步分析中仍然认为未截断长度作为label更有代表性
             if self.add_prefix:
                 history = [str(k + 1) + ". " + item_idx for k, item_idx in enumerate(history)]
             one_data["inters"] = "".join(history)

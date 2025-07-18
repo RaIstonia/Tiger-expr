@@ -5,7 +5,7 @@ export CUDA_VISIBLE_DEVICES=0,1
 DATASET=Instruments
 OUTPUT_DIR=./ckpt/$DATASET/
 
-torchrun --nproc_per_node=2 --master_port=2314 ./finetune.py \
+torchrun --nproc_per_node=1 --master_port=2314 ./finetune.py \
     --output_dir $OUTPUT_DIR \
     --dataset $DATASET \
     --per_device_batch_size 256 \

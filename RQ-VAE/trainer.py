@@ -242,7 +242,8 @@ class Trainer(object):
 
             if train_loss < self.best_loss:
                 self.best_loss = train_loss
-                # self._save_checkpoint(epoch=epoch_idx,ckpt_file=self.best_loss_ckpt)
+                self._save_checkpoint(epoch=epoch_idx,ckpt_file=self.best_loss_ckpt)
+                print("Best loss model saved at epoch %d" % epoch_idx)
 
             # eval
             if (epoch_idx + 1) % self.eval_step == 0:
@@ -254,6 +255,7 @@ class Trainer(object):
                     cur_eval_step = 0
                     self._save_checkpoint(epoch_idx, collision_rate=collision_rate,
                                           ckpt_file=self.best_collision_ckpt)
+                    print("Best collision model saved at epoch %d" % epoch_idx)
                 else:
                     cur_eval_step += 1
 
