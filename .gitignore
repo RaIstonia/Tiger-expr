@@ -1,2 +1,33 @@
+# 忽略本地模型
 all-MiniLM-L6-v2/
 distilbert-base-uncased/
+
+# 忽略模型 checkpoint
+LETTER-TIGER/ckpt/
+RQ-VAE/ckpt/
+
+# 忽略 wandb 日志
+**/wandb/
+**/.wandb/
+
+# 忽略 pycache 缓存
+__pycache__/
+*.pyc
+
+# 忽略中间文件
+*.log
+*.pt
+*.bin
+*.h5
+*.msgpack
+*.safetensors
+*.onnx
+*.ot
+*.npy
+*.csv
+*.png
+
+# 忽略虚拟环境（如果有）
+.env/
+.venv/
+*.egg-info/
